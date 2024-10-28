@@ -1,0 +1,33 @@
+cleaned_df_dtypes:
+- sexo: object
+- uf: object
+- idade: int
+- dias: int
+- pviews: int
+- visitas: int
+- tempo_total: float
+- futebol: float
+- futebol_internacional: float
+- futebol_olimpico: float
+- blog_cartola: float
+- atletismo: float
+- ginastica: float
+- judo: float
+- natacao: float
+- basquete: float
+- handebol: float
+- volei: float
+- tenis: float
+- canoagem: float
+- saltos_ornamentais: float
+- tempo_total: float
+- device: object
+- home: float
+- home_olimpiadas: float
+- cartola_status: object
+
+
+outliers:
+- idade
+- pviews
+- visitas
