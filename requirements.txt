@@ -10,3 +10,5 @@ scikit-learn==1.5.2
 feature_engine==1.8.1
 xgboost==2.1.1
 lightgbm==4.5.0
+catboost
+
