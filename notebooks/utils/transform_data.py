@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 def to_object(df: pd.DataFrame, mapped_cols: dict):
     """Converte colunas do DataFrame para o tipo categórico.
@@ -58,3 +59,17 @@ def remove_list_outliers(df, list_cols):
         # atualiza o df iterativamente removendo outliers
         df_result = remove_outlier(df_result, col)
     return df_result
+
+def criar_faixas_etarias(df, coluna_idade='idade'):
+    df = df.copy()
+    bins = [0, 17, 25, 35, 45, 60, np.inf]
+    labels = ['Até 17 anos', '18-25 anos', '26-35 anos', '36-45 anos', '46-60 anos', '60+ anos']
+    
+    df['faixa_etaria'] = pd.cut(
+        df[coluna_idade], 
+        bins=bins, 
+        labels=labels, 
+        right=False
+    )
+    
+    return df

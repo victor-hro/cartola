@@ -106,3 +106,68 @@ def barplot_counts_cartola(df: pd.DataFrame,
     )
 
     fig.show()
+
+
+
+def plot_th_decision(model, X, y, th_atual=0.5):
+    # Obter probabilidades do modelo
+    y_probas = model.predict_proba(X)[:, 1]
+
+    # Criar thresholds de 0.05 em 0.05
+    thresholds = np.arange(0.26, 0.6, 0.02)
+
+    # Calcular precision e recall para cada threshold
+    precisions = []
+    recalls = []
+
+    for th in thresholds:
+        y_pred = (y_probas > th).astype(int)
+        precision = precision_score(y, y_pred)
+        recall = recall_score(y, y_pred)
+        precisions.append(precision)
+        recalls.append(recall)
+
+    # Criar DataFrame com os resultados
+    df_metrics = pd.DataFrame({
+        'Threshold': thresholds,
+        'Precision': precisions,
+        'Recall': recalls
+    })
+
+    # Criar gráfico com Plotly
+    fig = go.Figure()
+
+    # Adicionar linha de Precision
+    fig.add_trace(go.Scatter(
+        x=df_metrics['Threshold'],
+        y=df_metrics['Precision'],
+        name='Precision',
+        line=dict(color='blue', width=2)
+    ))
+
+    # Adicionar linha de Recall
+    fig.add_trace(go.Scatter(
+        x=df_metrics['Threshold'],
+        y=df_metrics['Recall'],
+        name='Recall',
+        line=dict(color='red', width=2)
+    ))
+
+    # Atualizar layout
+    fig.update_layout(
+        title='Precision e Recall vs Threshold',
+        xaxis_title='Threshold',
+        yaxis_title='Score',
+        hovermode='x unified',
+        yaxis=dict(range=[0, 1])
+    )
+
+    # Adicionar linha vertical no threshold atual (0.45)
+    fig.add_vline(x=th_atual, line_dash="dash", line_color="gray", annotation_text=f"Threshold Atual ({th_atual})")
+
+    # Mostrar o gráfico
+    fig.show()
+
+    # Mostrar os valores em uma tabela
+    print("\nValores por Threshold:")
+    print(df_metrics.round(3).to_string(index=False))

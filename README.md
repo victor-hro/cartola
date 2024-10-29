@@ -1,36 +1,41 @@
-primeiro arquivo: notebooks > data_discovery.ipynb
 
-entendendo a estrutura do dataset e os dados.
+# Case Técnico - Victor Hugo Rocha de Oliveira
 
-sexo: object
-uf: object
-idade: int
-dias: int
-pviews: int
-visitas: int
-tempo_total: float
-futebol: float
-futebol_internacional: float
-futebol_olimpico: float
-blog_cartola: float
-atletismo: float
-ginastica: float
-judo: float
-natacao: float
-basquete: float
-handebol: float
-volei: float
-tenis: float
-canoagem: float
-saltos_ornamentais: float
-tempo_total: float
-device: object
-home: float
-home_olimpiadas: float
-cartola_status: object
+## Descrição
+Este projeto visa realizar uma análise exploratória para identificar os fatores que influenciam a adesão de usuários gratuitos do Cartola FC à versão PRO. Além disso, foi desenvolvido um modelo de propensão utilizando um modelo simples de machine learning.
+
+## Estrutura do Projeto
+A estrutura do projeto é organizada da seguinte forma:
+
+```
+projeto/
+│
+├── data/
+│   ├── 01_raw/                        # Arquivos brutos (raw)
+│   └── 02_handling_outliers/          # Dados após remoção de outliers
+│
+├── models/                             # Contém o modelo de machine learning treinado
+│   └── modelo.joblib                   # Exemplo de arquivo de modelo treinado
+│
+├── notebooks/                          # Notebooks para análise e modelagem
+│   ├── data_discovery.ipynb            # Análise inicial da distribuição dos dados
+│   ├── data_pipeline.ipynb             # Limpeza de dados para o modelo de ML
+│   ├── analise_exploratoria.ipynb      # Análise exploratória detalhada
+│   └── model.ipynb                     # Modelo de machine learning
+│
+├── notebooks/utils/                    # Pacotes Python utilizados no projeto
+│
+├── docs/                               # Documentação do projeto
+│   ├── case_tecnico.pdf                # Case técnico
+│   └── analise_exploratoria.pdf        # Análise exploratória em formato PDF
+│
+└── README.md                           # Documentação do projeto
+```
 
 
-## Transformação dos Dados:
 
-### Premissas:
-A coluna UF será removida do conjunto de dados: Apesar de existirem técnicas para tratamento de dados faltantes, optamos por sua remoção considerando dois fatores principais: o aspecto regional dos dados e o aumento de dimensionalidade que teríamos ao transformá-los para uso em machine learning. Iniciamente iremos começar com uma solução mais simples. Ao remover a UF, eliminamos a complexidade de lidar com diferenças regionais neste momento inicial. Em iterações futuras do projeto, podemos reavaliar esta decisão e incorporar a informação de UF utilizando técnicas mais avançadas de redução de dimensionalidade, caso se prove necessário para melhorar o desempenho do modelo.
+## Ordem de Visualização do Projeto
+1. **Descoberta de Dados**: Abra o notebook `data_discovery.ipynb` para explorar a distribuição dos dados.
+2. **Análise Exploratória**: Utilize o notebook `analise_exploratoria.ipynb` para realizar uma análise mais detalhada, incluindo a remoção de outliers.
+3. **Pipeline de Dados**: Execute o notebook `data_pipeline.ipynb` para limpar e preparar os dados para modelagem. Esse notebook aproveitou de todas as descobertas, durante a etapa da análise exploratória, para efetuar uma melhor limpeza dos dados.
+4. **Modelagem**: Abra o notebook `model.ipynb` para treinar e avaliar o modelo de machine learning.
