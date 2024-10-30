@@ -1,6 +1,7 @@
 import pandas as pd
 import plotly.express as px
-
+import numpy as np
+from sklearn.metrics import recall_score, precision_score
 def barplot_grouped_cartola(df: pd.DataFrame
                             , col: str
                             , xlabel: str=''
